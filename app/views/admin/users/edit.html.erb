@@ -1,0 +1,74 @@
+
+<h2>Account information of<br> <%=@user.email%></h2>
+
+<%= form_for(@user, :url => admin_user_path) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+  <table class="profile" summary="User Profile Information">
+  <tr>
+    <td class="main">
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %><br /> <%= f.text_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, "Confirmation" %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class="field">
+      <%= f.label :roles %><br />
+      <%= f.select(:role_ids, Role.all(:order=>"name ASC").collect { |x| [x.name , x.id]}, {}, :multiple => true)%>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", :class => 'minibutton'%>
+    </div>
+    </td>
+
+    <!--Sidebar-->
+
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.name %> <div style="font-size: 0.75em"> <%= @user.lock ? "[LOCKED]" : "" %></div>
+      <div>
+        <strong><%= link_to "Microposts #{@user.microposts.count}", admin_user_path(@user) %></strong>
+      </div>
+      <div class="field">
+        <%= f.label :password_expiry %><br />
+        <%= f.text_field :expiry, :class => "datepicker", :value => formatDate( @user.expiry ) %>
+      </div>
+      <div class="field">
+        <%= f.label :account_expiry %><br />
+        <%= f.text_field :account_expiry, :class => 'datepicker', :value => formatDate( @user.account_expiry ) %>
+      </div>
+      <div class="field">
+        <%= link_to @user.lock ? "✓ Unlock" : "- Lock", @user.lock ? unlock_admin_user_path(@user) : lock_admin_user_path(@user),
+                    :method  => "#{@user.lock ? "un": "" }lock",
+                    :data => { :confirm => "Are you sure to #{@user.lock ? "un": "" }lock #{@user.name} ?", :title => "#{@user.lock ? "un": "" }lock #{@user.email}"}, :class => 'minibutton' %>
+        <br/>
+        <br/>
+        <%= link_to "x Delete", admin_user_path(@user), :method => :delete,
+                    :data => { :confirm => "Are you sure to delete #{@user.name} ?",
+                               :title => "Delete #{@user.email}" }, :class => 'minibutton' %>
+      </div>
+      <br/>
+      <div class='button-group'>
+      <%= link_to 'View', admin_user_path(@user), :class => 'minibutton' %>
+      <%= link_to 'User List', admin_users_path, :class => 'minibutton' %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<% end %>

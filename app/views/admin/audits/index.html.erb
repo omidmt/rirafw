@@ -1,0 +1,24 @@
+<h1>Audit Logs</h1>
+
+<%= will_paginate %>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Date</th>
+    <th>Origin</th>
+    <th>Log</th>
+  </tr>
+
+<% @audits.each do |audit| %>
+  <tr>
+    <td class=""><%= link_to audit.user, admin_audit_path(audit) %></td>
+    <td nowrap="nowrap"><%= audit.datetime %></td>
+    <td class=""><%= audit.origin %></td>
+    <td><%= audit.message %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= will_paginate %>
+

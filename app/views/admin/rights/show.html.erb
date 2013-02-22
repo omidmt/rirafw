@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<div class="span-3 colborder">
+  <label>Controller</label><br>
+  <%= @right.controller%>
+</div>
+
+<div class="span-3 colborder">
+  <label>Action</label><br>
+  <%= @right.action%>
+</div>
+
+<div class="span-3 colborder">
+  <label>Deny Policy</label><br>
+  <%= @right.policy == Right::RIGHT_DENY_POLICY ? '✓' : ''%>
+</div>
+
+<div class="span-3 last">
+  <label>Applico</label><br>
+  <%= select(@right, :applet_ids, Applet.all(:order=>"name ASC").collect { |x| [x.name , x.id]}, {:selected => @right.applet_ids}, {:multiple => false, :disabled => true}) %>
+</div>
+
+<br/>
+<hr>
+
+<div class='button-group'>
+<%= link_to 'Edit', edit_admin_right_path(@right), :class => 'minibutton' %>
+<%= link_to 'Back', admin_rights_path, :class => 'minibutton' %>
+</div>

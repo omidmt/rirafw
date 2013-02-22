@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<div class="">
+  <Strong>Name</Strong><br />
+  <%= @job.name %>
+</div>
+<br/>
+
+<div class="">
+  <Strong>Category</Strong><br />
+  <%= @job.category %>
+</div>
+<br/>
+
+<div class="">
+  <Strong>Start Time</Strong><br />
+  <%= @job.startTime%>
+</div>
+<br/>
+
+<div class="">
+  <Strong>End Time</Strong><br />
+  <%= @job.endTime%>
+</div>
+<br/>
+
+<div class="">
+  <Strong>Owner</Strong><br />
+  <% if @job.user %> <%= @job.user.name %> <% end %>
+</div>
+<br/>
+
+<div class="">
+  <Strong>Status</Strong><br />
+  <%= Job.statusToString @job.status %>
+</div>
+<br/>
+
+<div class="">
+  <Strong>Log</Strong><br />
+  <textarea rows="20" cols="80" readonly="readonly"><%= @job.message %></textarea>
+</div>
+<br/>
+
+<div class="">
+  <Strong>Schedule Time</Strong><br />
+  <%= @job.schedule %>
+</div>
+<br/>
+
+<div class="">
+  <Strong>Recurrence</Strong><br />
+  <%= @job.recurrence %>
+</div>
+<br/>
+
+
+<%= link_to 'Back', jobs_path, :class => 'minibutton' %>

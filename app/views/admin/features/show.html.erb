@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<div class="span-3 colborder">
+  <label>Name</label><br>
+  <%= @admin_feature.name%>
+</div>
+
+<div class="span-4 colborder">
+  <label>Description</label><br>
+  <%= @admin_feature.description%>
+</div>
+
+<div class="span-2 colborder">
+  <label>Expiry</label><br>
+  <%= @admin_feature.expiry%>
+</div>
+
+<div class="span-2 colborder">
+  <label>Max Users</label><br>
+  <%= @admin_feature.max_user%>
+</div>
+
+<div class="span-2 last">
+  <label>Status</label><br>
+  <%= @admin_feature.stat == Feature::RF_ENABLE ? 'On' : 'Off'%>
+</div>
+
+<br/>
+
+<hr>
+
+<%= link_to 'All Features', admin_features_path, :class => 'minibutton' %>

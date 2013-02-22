@@ -1,0 +1,9 @@
+<h1>Editing Role</h1>
+
+<%= render 'form' %>
+<br/>
+<div class='button-group'>
+<%= link_to 'Show', admin_role_path(@role), :class => 'minibutton' %>
+<%= link_to 'Delete', admin_role_path(@role), method: :delete, data: { confirm: 'Are you sure you want to delete this role ? It removes permission of all users in this role.' }, :class => 'minibutton' %>
+<%= link_to 'Back', admin_roles_path, :class => 'minibutton' %>
+</div>

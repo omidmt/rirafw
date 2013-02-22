@@ -1,0 +1,34 @@
+
+<table class="profile" summary="User Profile information">
+  <tr>
+      <td class="main">
+          <h3>
+            <%= "#{@user.email}" %>
+          </h3>
+        <% unless @user.microposts.empty? %>
+            <%= will_paginate @microposts %>
+            <table class="microposts" summary="User microposts">
+              <%= render :collection => @microposts, :partial => 'microposts/micropost' %>
+            </table>
+            <%= will_paginate @microposts %>
+        <% end %>
+
+      </td>
+      <td class="sidebar round">
+        <strong>Name</strong> <%= @user.name %><br />
+        <div style="font-size: 0.75em"> <%= @user.lock ? "[LOCKED]" : "" %></div><br/>
+        <strong>Password Expiry</strong> <%= formatDate @user.expiry%><br/>
+        <strong>Account Expiry</strong> <%= formatDate @user.account_expiry%><br/>
+        <strong>Microposts</strong> <%= @user.microposts.count %>
+        <br />
+        <label>Rights</label><br>
+        <%= select(@user, :role_ids, Role.all(:order=>"name ASC").collect { |x| [x.name, x.id]}, {:selected => @user.role_ids}, {:multiple => true, :disabled => true}) %>
+        <br />
+        <br />
+        <div class='button-group'>
+        <%= link_to 'Edit', edit_admin_user_path(@user), :class => 'minibutton' %>
+        <%= link_to 'Users List', admin_users_path, :class => 'minibutton' %>
+        </div>
+      </td>
+    </tr>
+</table>

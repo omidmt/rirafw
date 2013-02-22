@@ -1,0 +1,37 @@
+JOBS
+
+How to add a new delayed job task for background processing:
+1- Create a sub-class of Task in lib/tasks folder
+    It must have a perform method that is called in background
+    initialize method can be ignored, so in next step call it without any param
+2- Wherever in your controller that you want call Job.enqueue and pass parameters, the main one is :task => 'instance of created class in previous step'
+3- Add the new task class in DJ initializer
+    config/initializers/dj_class_loader.rb > require 'welcome_mail_task'
+
+----------------------------
+
+How clear delayed_job queue:
+rake jobs:clear
+
+if you want to remove the jobs from RIRA job gui, you can use rails console and Job model
+to select what you want and destroy it
+
+----------------------------
+
+How start delayed_job for development
+rake jobs:work
+QUEUES=general,mailQ,tariffDQ rake jobs:work
+
+Production
+RAILS_ENV=production script/delayed_job --queues=general,mailQ,tariffDQ -n 3 start
+
+Queue names:
+GENERAL_QUEUE               default queue name
+MAIL_DELIVERY_QUEUE         sending emails
+TARIFF_DISTRIBUTE_QUEUE     distributing tariffs
+#TARIFF_ACTIVATE_QUEUE      activating queue (supposed to be merged with previous one as the tasks depend on each other)
+
+Can use { -n 2 } to spawn 2 process
+
+----------------------------
+

@@ -1,0 +1,23 @@
+<h1>Access Rights</h1>
+
+<%= link_to 'New', new_admin_right_path, :class => 'minibutton' %>
+<br/><br/>
+<table>
+  <tr>
+    <th>Controller</th>
+    <th>Action</th>
+    <th class="center">Deny Policy</th>
+  </tr>
+
+<% @rights.each do |right| %>
+  <tr>
+    <td><%= link_to right.controller, edit_admin_right_path(right) %></td>
+    <td><%= link_to right.action, edit_admin_right_path(right) %></td>
+    <td class="center"><%= link_to right.policy == Right::RIGHT_DENY_POLICY ? '✓' : '-', edit_admin_right_path(right) %></td>
+    <td><%= link_to 'x', admin_right_path(right), :title => 'Delete Access Right', method: :delete, data: { confirm: 'Are you sure you want to remove this access right? It may affect roles and user permissions.' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

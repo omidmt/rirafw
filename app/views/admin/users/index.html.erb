@@ -1,0 +1,37 @@
+<h1>All Users</h1>
+
+<%= link_to 'New User', new_admin_user_path, :class => 'minibutton' %>
+<br/>
+<br/>
+<%= will_paginate %>
+<table class="usersTable">
+  <thead>
+    <tr>
+      <td>email</td>
+      <td>Name</td>
+      <td></td>
+      <td>Password Expiry</td>
+      <td>Lock</td>
+      <td>Delete</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+      <td><%= link_to user.email, edit_admin_user_path(user) %></td>
+      <td><%= user.name %></td>
+      <td><%=  %></td>
+      <td><%= formatDate user.expiry %></td>
+      <td class="center"><%= link_to user.lock ? "✓" : "-", user.lock ? unlock_admin_user_path(user) : lock_admin_user_path(user),
+                      :method  => "#{user.lock ? "un": "" }lock",
+                      :data => { :confirm => "Are you sure to #{user.lock ? "un": "" }lock #{user.name} ?", :title => "#{user.lock ? "un": "" }lock #{user.email}"}, :class => 'minibutton' %></td>
+      <td class="center"><%= link_to "x", admin_user_path(user), :method => :delete,
+                      :data => { :confirm => "Are you sure to delete #{user.name} ?",
+                                   :title => "Delete #{user.email}" }, :class => 'minibutton' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+
+<%= will_paginate %>
+

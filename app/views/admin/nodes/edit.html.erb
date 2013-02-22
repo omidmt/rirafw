@@ -1,0 +1,19 @@
+<h1><%= @node.name %></h1>
+<div class='button-group'>
+<%= link_to 'New', new_admin_node_path, :class => 'minibutton' %>
+<%= link_to 'All Nodes', admin_nodes_path, :class => 'minibutton' %>
+</div>
+<br/>
+<br/>
+<%= form_for(@node, :url => admin_node_path) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+<%=  render 'form', :f => f %>
+
+<% end %>
+
+<br />
+<hr/>
+
+
+

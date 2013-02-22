@@ -1,0 +1,29 @@
+<h1>Filters</h1>
+
+<%= link_to 'New Filter', new_filter_path, :class => 'minibutton' %>
+<br/><br/>
+<%= will_paginate %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Group</th>
+    <th>Pattern</th>
+    <!--<th></th>-->
+    <th></th>
+  </tr>
+
+<% @filters.each do |filter| %>
+  <tr>
+    <td><%= link_to filter.name, filter %></td>
+    <td><%= link_to filter.group, filter %></td>
+    <td><%= link_to filter.pattern, filter %></td>
+    <!--<td><%= link_to 'Edit', edit_filter_path(filter), :class => 'minibutton' %></td>-->
+    <td><%= link_to 'x', filter, method: :delete, data: { confirm: 'Are you sure to remove?' }, :class => 'minibutton' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= will_paginate %>
+<%= link_to 'New Filter', new_filter_path, :class => 'minibutton' %>

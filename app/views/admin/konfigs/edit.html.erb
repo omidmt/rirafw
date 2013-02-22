@@ -1,0 +1,8 @@
+<h1>Editing Config</h1>
+
+<%= render 'form' %>
+<div class='button-group'>
+<%= link_to 'Show', admin_konfig_path(@konfig), :class => 'minibutton' %>
+<%= link_to 'Delete', admin_konfig_path( @konfig ), method: :delete, data: { confirm: 'Are you sure you want to remove a configuration pair ?' }, :class => 'minibutton' %>
+<%= link_to 'Back', admin_konfigs_path, :class => 'minibutton' %>
+</div>

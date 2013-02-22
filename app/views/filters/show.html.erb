@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<div class="">
+  <Strong>Name</Strong></Strong><br />
+  <%= @filter.name %>
+</div>
+<br/>
+<div class="">
+  <Strong>Group</Strong><br />
+  <%= @filter.group %>
+</div>
+<br/>
+<div class="">
+  <Strong>Pattern</Strong><br />
+  <%= @filter.pattern %>
+</div>
+<br/>
+
+<div class='button-group'>
+<%= link_to 'Edit', edit_filter_path(@filter), :class => 'minibutton' %>
+<%= link_to 'Back', filters_path, :class => 'minibutton' %>
+</div>

@@ -1,0 +1,27 @@
+<h1>RIRA Feature Management</h1>
+
+<div class='button-group'>
+<%= link_to 'New', new_admin_feature_path, :class => 'minibutton' %>
+<%= link_to 'Refresh', refresh_admin_features_path, :class => 'minibutton' %>
+</div>
+<br/><br/>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th class="center">Status</th>
+    <th></th>
+  </tr>
+
+<% @admin_features.each do |feat| %>
+  <tr>
+    <td><%= link_to feat.name, admin_feature_path(feat) %></td>
+    <td><%= link_to feat.description, admin_feature_path(feat) %></td>
+    <td class="center"><%= link_to feat.stat == Feature::RF_ENABLE ? 'On' : 'Off',feat.stat == Feature::RF_ENABLE ?  disable_admin_feature_path(feat) : enable_admin_feature_path(feat), data: { confirm: 'Are you sure you want to switch this feature status ? It changes current behavior!' } %></td>
+    <td><%= link_to 'x', admin_feature_path(feat), method: :delete, data: { confirm: 'Are you sure you want to remove this feature? It reduces current functionality!' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

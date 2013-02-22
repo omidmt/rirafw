@@ -1,0 +1,29 @@
+
+
+
+<table class="profile" summary="User Profile information">
+  <tr>
+    <td class="main">
+      <h2>
+        <%= "#{current_user.email}" %>
+      </h2>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= current_user.name %><br />
+      <strong>Microposts</strong> <%= @user.microposts.count %>
+      <!--<strong>URL</strong> <%= link_to admin_user_path(current_user), admin_user_path(current_user) %> -->
+    </td>
+  </tr>
+</table>
+
+<%= render 'sessions/change_password', :object => @user %>
+<br/>
+<h2>Microposts</h2>
+<hr/>
+<% unless @user.microposts.empty? %>
+    <%= will_paginate @microposts %>
+    <table class="microposts" summary="User microposts">
+      <%= render :collection => @microposts, :partial => 'microposts/micropost' %>
+    </table>
+    <%= will_paginate @microposts %>
+<% end %>

@@ -1,0 +1,29 @@
+<%= form_for(@filter) do |f| %>
+  <% if @filter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@filter.errors.count, "error") %> prohibited this filter from being saved:</h2>
+
+      <ul>
+      <% @filter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :group %><br />
+      <%= f.text_field :group %>
+    </div>
+    <div class="field">
+      <%= f.label :pattern %><br />
+      <%= f.text_field :pattern %>
+    </div>
+    <div class="actions">
+    <%= f.submit :class => 'minibutton' %>
+    </div>
+<% end %>

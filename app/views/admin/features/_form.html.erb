@@ -1,0 +1,48 @@
+<%= form_for [ :admin, @admin_feature ] do |f| %>
+  <% if @admin_feature.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_feature.errors.count, "error") %> prohibited this admin_feature from being saved:</h2>
+
+      <ul>
+      <% @admin_feature.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, :class => "focused"%>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description%>
+    </div>
+
+    <div class="field">
+      <%= f.label :code %><br />
+      <%= f.text_field :code%>
+    </div>
+
+    <div class="field">
+      <%= f.label :expiry %><br />
+      <%= f.text_field :expiry%>
+    </div>
+
+    <div class="field">
+      <%= f.label :max_user %><br />
+      <%= f.text_field :max_user%>
+    </div>
+
+    <div class="field">
+      <%= f.label :hash %><br />
+      <%= f.text_field :hsh%>
+    </div>
+
+  <div class="actions">
+    <%= f.submit :class => 'minibutton'%>
+    <br/>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<h1>Nodes</h1>
+
+<%=  link_to 'Add New Node', new_admin_node_path, :class => 'minibutton' %>
+<br/>
+<br/>
+<%= will_paginate %>
+<table class="nodesTable">
+  <thead>
+  <tr>
+    <td>Name</td>
+    <td>IP</td>
+    <td>Type</td>
+    <td>Port</td>
+    <td>User1</td>
+    <td>User2</td>
+    <td>User3</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @nodes.each do |node| %>
+      <tr>
+        <td><%= link_to node.name, edit_admin_node_path(node) %></td>
+        <td><%= node.ip %></td>
+        <td><%= node.klass %></td>
+        <td><%= node.port %></td>
+        <td><%= node.user %></td>
+        <td><%= node.user2 %></td>
+        <td><%= node.user3 %></td>
+        <td><%= link_to 'x', admin_node_path( node ), method: :delete, data: { confirm: 'Are you sure you want to remove this node ?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate %>
+

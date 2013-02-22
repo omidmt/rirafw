@@ -1,0 +1,14 @@
+<h1>Add new node</h1>
+<%= link_to 'All Nodes', admin_nodes_path, :class => 'minibutton' %>
+<br/>
+<br/>
+<%= form_for(@node, :url => admin_nodes_path) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <%=  render 'form', :f => f %>
+
+<% end %>
+
+<br/>
+<hr/>
+<%= link_to 'All Nodes', admin_nodes_path, :class => 'minibutton' %>

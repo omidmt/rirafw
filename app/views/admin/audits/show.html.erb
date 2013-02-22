@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Audit List', admin_audits_path, :class => 'minibutton' %>
+<br/><br/>
+<div>
+  <label>User</label><br>
+  <%= @audit.user %>
+</div>
+<br/>
+<div>
+  <label>Date</label><br>
+  <%= @audit.datetime %>
+</div>
+<br/>
+<div class="">
+  <label>Origin</label><br>
+  <%= @audit.origin %>
+</div>
+<br/>
+<div>
+  <label>Log</label><br>
+  <%= @audit.message %>
+</div>
+<br/>

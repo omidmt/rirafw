@@ -1,0 +1,34 @@
+<%= form_for [:admin, @role] do |f| %>
+  <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+
+      <ul>
+      <% @role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, :class => "focused"%>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rights %><br />
+      <%= f.select(:right_ids, Right.all(:order=>"controller, action ASC").collect { |x| ["#{x.controller} #{x.action}" , x.id]}, {}, :multiple => true)%>
+    </div>
+
+
+    <div class="actions">
+    <%= f.submit :class => 'minibutton'%>
+    <br/><br/>
+  </div>
+<% end %>

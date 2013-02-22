@@ -1,0 +1,41 @@
+<%= form_for [:admin, @right] do |f| %>
+  <% if @right.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@right.errors.count, "error") %> prohibited this access right from being saved:</h2>
+
+      <ul>
+      <% @right.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div class="field">
+      <%= f.label :controller %><br />
+      <%= f.text_field :controller, :class => "focused"%>
+    </div>
+
+    <div class="field">
+      <%= f.label :action %><br />
+      <%= f.text_field :action %>
+    </div>
+
+    <div class="field">
+      <%= f.label :applico %><br />
+      <%= f.select(:applet_ids, Applet.all(:order=>"name").collect { |x| [x.name, x.id]}, {}, :multiple => false)%>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :deny_Policy %><br />
+      <%= f.check_box :policy %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit :class => 'minibutton' %>
+    <br/>
+  </div>
+  <br />
+<% end %>

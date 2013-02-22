@@ -1,0 +1,18 @@
+<!-- /// RIRA Launchpad
+	 Author Omid Mehdizadeh (omid.mt@gmail.com)
+	 Ver 1.1 Sep 2012
+-->
+
+    <link rel="shortcut icon" href="/assets/favico.png">
+    <%= stylesheet_link_tag 'launchpad', :media => 'screen' %>
+    <%= stylesheet_link_tag 'slickmenu', :media => 'screen' %>
+
+<script type="text/javascript">
+    var appList = '<div id="lpContent"><div id="menu"><ul>';
+            <% if @apps
+            @apps.each do |app| %>
+            <%appIcon = image_tag( "/assets/#{app.icon}", :alt => "#{app.description}", :class => "appletico pie" ) %>
+        appList += '<li><%= link_to appIcon, app.path %><div class="label center"><%=app.name.sub(' ', '<br/>').html_safe%></div></li>';
+            <% end end %>
+        appList += '</ul></div></div>';
+</script>

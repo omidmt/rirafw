@@ -1,0 +1,21 @@
+<h1>Roles</h1>
+<%= link_to 'New Role', new_admin_role_path, :class => 'minibutton' %>
+<br/>
+<br/>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+
+<% @roles.each do |role| %>
+  <tr>
+    <td><%= link_to role.name, admin_role_path(role) %></td>
+    <td><%= link_to role.description, admin_role_path(role) %></td>
+    <td><%= link_to 'x', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure you want to delete this role ? It removes permission of all users in this role.' } %></td>
+  </tr>
+<% end %>
+</table>
+<br/>
+<%= link_to 'New Role', new_admin_role_path, :class => 'minibutton' %>

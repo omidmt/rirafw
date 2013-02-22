@@ -1,0 +1,25 @@
+.aeJ {
+background: none;
+overflow-y: scroll;
+}
+user agent stylesheetdiv {
+display: block;
+}
+Pseudo ::-webkit-scrollbar element
+.Tm::-webkit-scrollbar {
+width: 16px;
+height: 16px;
+}
+Pseudo ::-webkit-file-upload-button element
+.Tm::-webkit-scrollbar-thumb {
+background-color: rgba(255, 255, 255, 0.4);
+-webkit-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.10),inset 0 -1px 0 rgba(255, 255, 255, 0.07);
+}
+Pseudo ::-webkit-input-placeholder element
+.Tm::-webkit-scrollbar-button {
+width: 0;
+height: 0;
+display: none;
+}
+
+

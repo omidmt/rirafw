@@ -1,0 +1,18 @@
+<%= form_for(@admin_audit) do |f| %>
+  <% if @admin_audit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_audit.errors.count, "error") %> prohibited this admin_audit from being saved:</h2>
+
+      <ul>
+      <% @admin_audit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit :class => 'minibutton' %>
+    <br/>
+  </div>
+<% end %>

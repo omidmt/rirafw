@@ -1,0 +1,27 @@
+<h1>Jobs</h1>
+
+<%= will_paginate %>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Task</th>
+    <th>Category</th>
+    <th>Start Time</th>
+    <th>Owner</th>
+    <th>Status</th>
+  </tr>
+
+<% @jobs.each do |job| %>
+  <tr>
+    <td><%= link_to job.id, job %></td>
+    <td><%= link_to job.name, job %></td>
+    <td><%= link_to job.category, job %></td>
+    <td><%= link_to job.startTime, job %></td>
+    <td> <% if job.user %> <%= link_to job.user.name, admin_user_path(job.userId) %> <% end  %></td>
+    <td><%= link_to Job.statusToString(job.status), job %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= will_paginate %>

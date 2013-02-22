@@ -1,0 +1,42 @@
+RIRA
+Ericsson Charging System 5 AOCUI
+
+Pre-deploy
+1- bundle package
+
+Installation
+
+1- Deploy [s]ftp/deploy vendor separately, seems excluded by default
+2- Install gems
+    bundle install --local --without development test
+3- assets precompile
+    Run it locally to prevent server compilation
+    RAILS_ENV=production bundle exec rake assets:precompile
+4- DB Create/Migrate (InnoDB tables may be made more efficient by enabling innodb_file_per_table)
+    rake db:create RAILS_ENV=production
+    rake db:migrate RAILS_ENV=production
+5- Seed the initial DB data
+    rake db:seed RAILS_ENV=production
+6- Run delayed_job
+    RAILS_ENV=production script/delayed_job stop
+    RAILS_ENV=production script/delayed_job --queues=generalQ,mailQ,tariffDQ -n 3 start
+7- Restart nginx
+    /opt/rira/ctlscript.sh restart nginx
+    /opt/rira/ctlscript.sh restart nginx (2nd time to ensure started)
+
+
+Security Matters
+
+1- Private key
+    openssl genrsa -des3 -out pr.key 810
+2- Public key
+    openssl rsa -in pr.key -pubout -out pu.key
+3- Extract modulus to set in JS
+    openssl rsa -in pr.key -noout -modulus
+    update util.js and encrypt function
+4- Test pub/prv enc/dec
+    openssl base64 -d | openssl rsautl -inkey pr.key -decrypt < encodedBase64
+5- Adjust permission
+    chown RailsAppRunnerUser pr.key pu.key
+    chmod 400 pr.key pu.key
+

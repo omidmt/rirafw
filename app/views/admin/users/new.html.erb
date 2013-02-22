@@ -1,0 +1,42 @@
+<h3>Creating New User</h3>
+<%= link_to 'Users List', admin_users_path, :class => 'minibutton' %>
+<br/><br/>
+<%= form_for(@user, :url => admin_users_path ) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.text_field :email %>
+          </div>
+          <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name %>
+          </div>
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password %>
+          </div>
+    <div class="field">
+            <%= f.label :password_confirmation, "Confirmation" %><br/>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="field">
+            <%= f.label :password_expiry %><br />
+            <%= f.text_field :expiry, :class => 'datepicker' %>
+          </div>
+          <div class="field">
+            <%= f.label :account_expiry %><br />
+            <%= f.text_field :account_expiry, :class => 'datepicker' %>
+          </div>
+          <div class="field">
+            <%= f.label :lock %><br />
+            <%= f.check_box :lock %>
+          </div>
+          <div class="field">
+            <%= f.label :roles %><br />
+            <%= f.select(:role_ids, Role.all(:order=>"name ASC").collect { |x| [x.name , x.id]}, {}, :multiple => true)%>
+          </div>
+    <div class="actions">
+        <br /><%= f.submit "Create User", :class => 'minibutton' %>
+    </div>
+<% end %>
+
